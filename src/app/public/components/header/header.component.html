@@ -1,20 +1,20 @@
 <mat-toolbar color="primary" class="navbar">
   <mat-toolbar-row>
-     <button class="navbar-brand" mat-button routerLink="/home">
+     <button class="navbar__brand" mat-button routerLink="/home">
       <span>Quote island</span>
       <mat-icon  aria-hidden="false" aria-label="Right quote">format_quote</mat-icon>
     </button>
     <button mat-button>
-      <span class="navbar-item">Quotes</span>
+      <span class="navbar__item">Quotes</span>
     </button>
     <button mat-button>
-      <span class="navbar-item">Authors</span>
+      <span class="navbar__item">Authors</span>
     </button>
     <button mat-button>
-      <span class="navbar-item">Categories</span>
+      <span class="navbar__item">Categories</span>
     </button>
     <button mat-button [matMenuTriggerFor]="menu">
-      <span class="navbar-item">Admin</span>
+      <span class="navbar__item">Admin</span>
       <mat-icon  aria-hidden="false" aria-label="Keyboard arrow down">keyboard_arrow_down</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
@@ -23,21 +23,21 @@
       <button mat-menu-item>Category Manager</button>
       <button mat-menu-item>Quote Manager</button>
     </mat-menu>
-    <mat-form-field class="navbar-input"> 
-      <input matInput type="text" [(ngModel)]="value" placeholder="Search" class="navbar-input">
+    <mat-form-field class="navbar__input"> 
+      <input matInput type="text" [(ngModel)]="value" placeholder="Search" class="navbar__input">
       <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
      <button mat-raised-button color="accent">Search</button>
     <button mat-button routerLink="/about">
-      <span class="navbar-item">About</span>
+      <span class="navbar__item">About</span>
     </button>
     <button mat-button routerLink="/register">
-      <span class="navbar-item">Register</span>
+      <span class="navbar__item">Register</span>
     </button>
     <button mat-button>
-      <span class="navbar-item" routerLink="/login">Login</span>
+      <span class="navbar__item" routerLink="/login">Login</span>
     </button>
   </mat-toolbar-row>
 </mat-toolbar>
