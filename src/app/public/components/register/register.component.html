@@ -1,0 +1,1 @@
+<p>This is register page</p>
