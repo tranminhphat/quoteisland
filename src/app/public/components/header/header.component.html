@@ -33,11 +33,14 @@
     <button mat-button routerLink="/about">
       <span class="navbar__item">About</span>
     </button>
-    <button mat-button routerLink="/register">
+    <button *ngIf="!isLoggedIn()" mat-button routerLink="/register">
       <span class="navbar__item">Register</span>
     </button>
-    <button mat-button>
+    <button *ngIf="!isLoggedIn()" mat-button>
       <span class="navbar__item" routerLink="/login">Login</span>
+    </button>
+    <button *ngIf="isLoggedIn()" mat-button>
+      <span class="navbar__item" routerLink="/login" (click)="logout()">Logout</span>
     </button>
   </mat-toolbar-row>
 </mat-toolbar>

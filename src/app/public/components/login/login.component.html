@@ -10,11 +10,11 @@
       <mat-card-title class="title">Login</mat-card-title>
     </mat-card-header>
     <mat-card-content class="login-card__body">
-      <form class="form">
+      <form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
         <div>
           <mat-form-field class="form__field">
             <mat-label>Username</mat-label>
-            <input matInput [formControl]="usernameFormControl" [errorStateMatcher]="matcher" />
+            <input matInput [formControl]="usernameFormControl" />
             <mat-error *ngIf="usernameFormControl.hasError('required')">
               Username is <strong>required</strong>
             </mat-error>
@@ -23,7 +23,7 @@
         <div>
           <mat-form-field class="form__field">
             <mat-label>Password</mat-label>
-            <input type="password" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher"/>
+            <input type="password" matInput [formControl]="passwordFormControl" />
             <mat-error *ngIf="passwordFormControl.hasError('required')">
               Password is <strong>required</strong>
             </mat-error>
