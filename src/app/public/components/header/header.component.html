@@ -13,15 +13,15 @@
     <button mat-button>
       <span class="navbar__item">Categories</span>
     </button>
-    <button mat-button [matMenuTriggerFor]="menu">
+    <button mat-button [matMenuTriggerFor]="menu" *appHasRole="['Admin', 'Moderator']">
       <span class="navbar__item">Admin</span>
       <mat-icon  aria-hidden="false" aria-label="Keyboard arrow down">keyboard_arrow_down</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>User Manager</button>
-      <button mat-menu-item>Author Manager</button>
-      <button mat-menu-item>Category Manager</button>
-      <button mat-menu-item>Quote Manager</button>
+      <button mat-menu-item *appHasRole="['Admin']" routerLink="/admin/users">User Management</button>
+      <button mat-menu-item *appHasRole="['Admin', 'Moderator']" routerLink="/admin/authors">Author Management</button>
+      <button mat-menu-item *appHasRole="['Admin', 'Moderator']" routerLink="/admin/categories">Category Management</button>
+      <button mat-menu-item *appHasRole="['Admin', 'Moderator']" routerLink="/admin/quotes">Quote Management</button>
     </mat-menu>
     <mat-form-field class="navbar__input"> 
       <input matInput type="text" [(ngModel)]="value" placeholder="Search" class="navbar__input">
@@ -33,8 +33,8 @@
     <button mat-button routerLink="/about">
       <span class="navbar__item">About</span>
     </button>
-    <button *ngIf="!isLoggedIn()" mat-button routerLink="/register">
-      <span class="navbar__item">Register</span>
+    <button *ngIf="!isLoggedIn()" mat-button >
+      <span class="navbar__item" routerLink="/register">Register</span>
     </button>
     <button *ngIf="!isLoggedIn()" mat-button>
       <span class="navbar__item" routerLink="/login">Login</span>

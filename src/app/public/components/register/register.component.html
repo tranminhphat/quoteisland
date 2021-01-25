@@ -1,1 +1,73 @@
-<p>This is register page</p>
+<app-banner [imageUrl]="bannerImageUrls">
+  <div class="banner">
+    <h1 class="banner__title">Register</h1>
+  </div>
+</app-banner>
+<div class="register-card">
+  <mat-card class="register-card__container">
+    <mat-card-header class="register-card__header">
+      <mat-card-title class="title">Register</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="register-card__body">
+      <form class="form" [formGroup]="registerForm" (ngSubmit)="register()">
+        <div>
+          <mat-form-field class="form__field">
+            <mat-label>First name</mat-label>
+            <input matInput formControlName="firstName" />
+            <mat-error>
+              First name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="form__field">
+            <mat-label>Last name</mat-label>
+            <input matInput formControlName="lastName" />
+            <mat-error>
+              Last name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="form__field">
+            <mat-label>Username</mat-label>
+            <input matInput formControlName="username"/>
+            <mat-error *ngIf="registerForm.hasError('required', 'username')">
+              Username is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="registerForm.hasError('minlength', 'username')">
+              Username must be at least <strong>4 characters</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="form__field">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password" />
+            <mat-error *ngIf="registerForm.hasError('required', 'password')">
+              Password is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="registerForm.hasError('minlength', 'password')">
+              Password must be at least <strong>6 characters</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+         <div>
+          <mat-form-field class="form__field">
+            <mat-label>Confirm password</mat-label>
+            <input type="password" matInput formControlName="confirmPassword" [errorStateMatcher]="matcher"/>
+            <mat-error>
+              Confirm password is <strong>mismatch</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <button mat-stroked-button color="primary" class="button" [disabled]="registerForm.invalid">Register</button>
+        <p class="termsofservice">
+          By clicking
+          <em>Register</em> you agree to our
+          <a routerLink="/home">terms of service.</a>
+        </p>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

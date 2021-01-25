@@ -13,6 +13,11 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) => m.AdminModule),
+  },
   { path: '**', component: NotFoundComponent },
 ];
 

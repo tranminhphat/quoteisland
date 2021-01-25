@@ -1,0 +1,57 @@
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__title {
+    font-size: 50px;
+    text-align: center;
+    color: white;
+  }
+}
+
+.register-card {
+  width: 30%;
+  margin: 30px auto;
+
+  &__container {
+    padding: 0px;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(40deg, #45cafc, #303f9f) !important;
+
+    .title {
+      margin: 0;
+      padding: 30px 0px;
+      font-size: 30px;
+      color: white;
+    }
+  }
+
+  &__body {
+    margin: 1.5rem 1rem;
+
+    .form {
+      text-align: center;
+
+      &__field {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .button {
+      width: 100%;
+      border-color: deepskyblue;
+      margin-bottom: 1rem;
+    }
+
+    .termsofservice {
+      padding-bottom: 1rem;
+    }
+  }
+}

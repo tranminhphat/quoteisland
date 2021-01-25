@@ -53,14 +53,33 @@ export class AuthService {
     );
   }
 
+  register(user: User) {
+    return this.http.post(`${this.AUTH_URL}/register`, user);
+  }
+
   isLoggedIn() {
     const token = localStorage.getItem('token');
-    console.log(!this.jwtHelper.isTokenExpired(token));
     return !this.jwtHelper.isTokenExpired(token);
   }
 
   logout() {
     this.changeDecodedToken(null);
     localStorage.removeItem('token');
+  }
+
+  isRoleMatch(allowedRoles: string[]): boolean {
+    let result = false;
+
+    if (this.decodedToken) {
+      const userRoles = this.decodedToken.role as Array<string>;
+      allowedRoles.forEach((allowedRole) => {
+        if (userRoles.includes(allowedRole)) {
+          result = true;
+          return;
+        }
+      });
+    }
+
+    return result;
   }
 }

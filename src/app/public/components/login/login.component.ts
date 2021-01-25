@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { AlertService } from 'src/app/core/services/alert.service';
 import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-login',
@@ -22,7 +23,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private alertService: AlertService
   ) {}
 
   ngOnInit(): void {
@@ -35,10 +37,13 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.loginForm.value).subscribe(
       () => {
-        console.log('Login successfully');
+        this.alertService.showSuccess('Login successfully');
         this.router.navigate(['/']);
       },
-      (error) => console.error('Login failed')
+      (error) => {
+        console.error('Login failed');
+        this.alertService.showError('Login failed');
+      }
     );
   }
 }
