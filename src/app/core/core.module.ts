@@ -2,9 +2,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProgressAnimationType, ToastrModule } from 'ngx-toastr';
 import { SkipSelf, Optional, NgModule } from '@angular/core';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AlertService } from './services/alert.service';
 import { AuthService } from './services/auth.service';
+import { environment } from 'src/environments/environment';
+
+const jwtOptions = {
+  config: {
+    tokenGetter: () => localStorage.getItem('token'),
+    allowedDomains: environment.allowedDomains,
+    disallowedDomains: environment.disallowedRoutes,
+  },
+};
 
 const toastrOptions = {
   timeOut: 3000,
@@ -17,6 +27,7 @@ const toastrOptions = {
   imports: [
     HttpClientModule,
     BrowserAnimationsModule,
+    JwtModule.forRoot(jwtOptions),
     ToastrModule.forRoot(toastrOptions),
   ],
   providers: [AlertService, AuthService],

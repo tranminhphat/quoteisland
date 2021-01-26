@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:3000/api',
-  whitelistedDomains: ['localhost:3000'],
-  blacklistedRoutes: ['localhost:3000/api/auth'],
+  allowedDomains: ['localhost:3000'],
+  disallowedRoutes: ['localhost:3000/api/auth'],
   bannerImageUrls: {
     registerPage: './assets/banners/register.jpeg',
     loginPage: './assets/banners/login.jpeg',
