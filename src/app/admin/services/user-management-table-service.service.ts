@@ -12,6 +12,11 @@ import { UserService } from 'src/app/core/services/user.service';
 export class UserManagementTableServiceService {
   constructor(private userService: UserService) {}
 
+  pagination: Pagination = {
+    pageNumber: 1,
+    pageSize: 10,
+  };
+
   getRawData(
     pagination?: Pagination,
     sortMode?: SortMode,
@@ -22,7 +27,7 @@ export class UserManagementTableServiceService {
       .pipe(
         map((response: any) => {
           // this.pagination = response.pagination;
-          return response.items;
+          return response;
         })
       )
       .toPromise();

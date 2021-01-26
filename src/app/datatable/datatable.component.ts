@@ -17,14 +17,18 @@ export class DatatableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   value = '';
   dataSource: any;
+  pagination: any;
 
   constructor() {}
 
   ngOnInit() {
     this.tableService.getRawData().then((res) => {
-      console.log(res);
-      this.dataSource = new MatTableDataSource(res);
+      console.log(res.pagination);
+      this.pagination = res.pagination;
+      console.log(this.pagination);
+      this.dataSource = new MatTableDataSource(res.items);
       this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     });
   }
 

@@ -1,11 +1,20 @@
 .admin-container {
-  &__search {
+  &__searchandadd {
     margin-bottom: 1rem;
     margin-top: 1rem;
     margin-left: 1rem;
+    display: flex;
+    justify-content: space-between;
 
-    button {
-      margin-left: 1rem;
+    .search {
+      button {
+        margin-left: 1rem;
+      }
+    }
+    .add {
+      button {
+        margin-right: 3rem;
+      }
     }
   }
 

@@ -16,6 +16,7 @@ export class UserManagementComponent {
     { def: 'lastName', colName: 'Last name' },
     { def: 'roles', colName: 'Roles' },
     { def: 'username', colName: 'Username' },
+    { def: 'options', colName: 'Options' },
   ];
 
   constructor(public tableService: UserManagementTableServiceService) {}
