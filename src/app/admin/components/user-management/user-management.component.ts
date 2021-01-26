@@ -1,8 +1,6 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { TableColumn } from 'src/app/core/models/tablecolumn';
 import { environment } from 'src/environments/environment';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
 import { UserManagementTableServiceService } from '../../services/user-management-table-service.service';
 
 @Component({
@@ -10,43 +8,15 @@ import { UserManagementTableServiceService } from '../../services/user-managemen
   templateUrl: './user-management.component.html',
   styleUrls: ['./user-management.component.scss'],
 })
-export class UserManagementComponent implements OnInit, AfterViewInit {
+export class UserManagementComponent {
   readonly bannerImageUrls = environment.bannerImageUrls.adminPage;
-  value = '';
-  displayedColumns: string[] = [
-    'id',
-    'first name',
-    'last name',
-    'roles',
-    'username',
+  displayedColumns: TableColumn[] = [
+    { def: '_id', colName: 'ID' },
+    { def: 'firstName', colName: 'First name' },
+    { def: 'lastName', colName: 'Last name' },
+    { def: 'roles', colName: 'Roles' },
+    { def: 'username', colName: 'Username' },
   ];
-  usersData: any;
-  dataSource: any;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private tableService: UserManagementTableServiceService) {}
-
-  ngOnInit() {
-    this.tableService.getRawData().then((res) => {
-      this.dataSource = new MatTableDataSource(res);
-      this.dataSource.sort = this.sort;
-    });
-  }
-
-  ngAfterViewInit() {}
-
-  getUsers() {
-    this.tableService.getRawData().then((res) => console.log(res));
-  }
-
-  sortData($event) {
-    console.log($event);
-  }
-
-  showRoles(roles: []): string {
-    return roles
-      .map((role: { id: string; name: string }) => role.name)
-      .join(', ');
-  }
+  constructor(public tableService: UserManagementTableServiceService) {}
 }

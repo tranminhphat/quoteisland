@@ -1,7 +1,4 @@
 export interface TableColumn {
-  name: string;
-  text: string;
-  type: string;
-  sortable?: boolean;
-  center?: boolean;
+  def: string;
+  colName: string;
 }
