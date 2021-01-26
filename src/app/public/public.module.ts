@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
-import { MaterialModule } from '../material.module';
 import { CommonModule } from '@angular/common';
+import { MaterialModule } from '../material.module';
 
 import { AboutComponent } from './components/about/about.component';
 import { HeaderComponent } from './components/header/header.component';

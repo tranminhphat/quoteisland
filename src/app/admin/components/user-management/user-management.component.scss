@@ -1,0 +1,36 @@
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__title {
+    font-size: 50px;
+    text-align: center;
+    color: white;
+  }
+}
+.admin-container {
+  &__search {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+
+    button {
+      margin-left: 1rem;
+    }
+  }
+
+  &__datatable {
+    table {
+      width: 100%;
+    }
+
+    th.mat-sort-header-sorted {
+      color: black;
+    }
+
+    .column {
+      margin-left: 1rem;
+    }
+  }
+}
