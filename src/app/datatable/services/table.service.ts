@@ -8,4 +8,7 @@ export interface TableService {
   filterMode?: FilterMode;
 
   getRawData();
+  openAddModal();
+  openEditModal(data: any);
+  onDeleteUser(id: string);
 }

@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, ViewChild } from '@angular/core';
 import { TableColumn } from 'src/app/core/models/tablecolumn';
+import { DatatableComponent } from 'src/app/datatable/datatable.component';
 import { environment } from 'src/environments/environment';
-import { UserAddModalComponent } from '../../modals/user-add-modal/user-add-modal.component';
 import { UserManagementTableServiceService } from '../../services/user-management-table-service.service';
 
 @Component({
@@ -12,6 +11,9 @@ import { UserManagementTableServiceService } from '../../services/user-managemen
 })
 export class UserManagementComponent {
   readonly bannerImageUrls = environment.bannerImageUrls.adminPage;
+
+  @ViewChild(DatatableComponent) datatable: DatatableComponent;
+
   displayedColumns: TableColumn[] = [
     { def: '_id', colName: 'ID' },
     { def: 'firstName', colName: 'First name' },
@@ -22,14 +24,10 @@ export class UserManagementComponent {
   ];
   value = '';
 
-  constructor(
-    public tableService: UserManagementTableServiceService,
-    public dialog: MatDialog
-  ) {}
+  constructor(public tableService: UserManagementTableServiceService) {}
 
   openAddModal() {
-    const dialogRef = this.dialog.open(UserAddModalComponent, {
-      width: '400px',
-    });
+    const dialog = this.tableService.openAddModal();
+    dialog.afterClosed().subscribe(() => this.datatable.refresh());
   }
 }

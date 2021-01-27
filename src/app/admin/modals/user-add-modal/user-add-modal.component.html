@@ -1,4 +1,5 @@
-<div>
+<h1 mat-mat-dialog-title>Add User</h1>
+<div mat-dialog-content>
 <form class="form" [formGroup]="addUserForm" (ngSubmit)="addUser()">
   <div>
     <mat-form-field class="form__field">
@@ -68,6 +69,6 @@
     <mat-label>Photo</mat-label>
     <app-photo-uploader (uploadSucceed)="photoUploaded($event)"></app-photo-uploader> 
   </div>
-  <button mat-stroked-button color="primary" class="button" [disabled]="addUserForm.invalid">Upload</button>
+  <button type="submit" mat-stroked-button color="primary" class="button" [disabled]="addUserForm.invalid">Upload</button>
 </form>
 </div>

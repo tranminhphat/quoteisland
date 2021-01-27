@@ -8,11 +8,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { Router } from '@angular/router';
 import { Role } from 'src/app/core/models/role';
 import { User } from 'src/app/core/models/user';
 import { AlertService } from 'src/app/core/services/alert.service';
-import { AuthService } from 'src/app/core/services/auth.service';
 import { RoleService } from 'src/app/core/services/role.service';
 import { UserService } from 'src/app/core/services/user.service';
 
@@ -52,7 +50,7 @@ export class UserAddModalComponent implements OnInit {
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: [''],
         roles: ['', [Validators.required]],
-        photoUrl: ['', [Validators.required]],
+        photoUrl: [''],
       },
       { validators: this.confirmPasswordValidator }
     );

@@ -21,10 +21,16 @@ export class DatatableComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    this.getTableData();
+  }
+
+  refresh() {
+    this.getTableData();
+  }
+
+  getTableData() {
     this.tableService.getRawData().then((res) => {
-      console.log(res.pagination);
       this.pagination = res.pagination;
-      console.log(this.pagination);
       this.dataSource = new MatTableDataSource(res.items);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
@@ -33,6 +39,15 @@ export class DatatableComponent implements OnInit {
 
   getRowHeader(displayedColumns: TableColumn[]) {
     return displayedColumns.map((column) => column.def);
+  }
+
+  openEditModal(data) {
+    const dialog = this.tableService.openEditModal(data);
+    dialog.afterClosed().subscribe(() => this.refresh());
+  }
+
+  onDeleteUser(id: string) {
+    this.tableService.onDeleteUser(id).subscribe(() => this.refresh());
   }
 
   showRoles(roles: { id: string; name: string }[]) {
