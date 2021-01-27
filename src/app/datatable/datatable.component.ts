@@ -33,7 +33,6 @@ export class DatatableComponent implements OnInit {
       this.pagination = res.pagination;
       this.dataSource = new MatTableDataSource(res.items);
       this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
     });
   }
 
@@ -42,8 +41,10 @@ export class DatatableComponent implements OnInit {
   }
 
   openEditModal(data) {
-    const dialog = this.tableService.openEditModal(data);
-    dialog.afterClosed().subscribe(() => this.refresh());
+    const dialog = this.tableService
+      .openEditModal(data)
+      .afterClosed()
+      .subscribe(() => this.refresh());
   }
 
   onDeleteUser(id: string) {
@@ -52,5 +53,10 @@ export class DatatableComponent implements OnInit {
 
   showRoles(roles: { id: string; name: string }[]) {
     return roles.map((role) => role.name).join(', ');
+  }
+
+  onPageChange($event) {
+    this.tableService.pagination.pageNumber = $event.pageIndex + 1;
+    this.refresh();
   }
 }

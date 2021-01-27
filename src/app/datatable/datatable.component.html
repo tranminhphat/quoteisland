@@ -17,7 +17,6 @@
       <tr mat-header-row *matHeaderRowDef="getRowHeader(displayedColumns)"></tr>
       <tr mat-row *matRowDef="let row; columns: getRowHeader(displayedColumns);"></tr>
     </table>
-
-    <mat-paginator [pageSize]="tableService.pagination.pageSize" showFirstLastButtons></mat-paginator>
+    <mat-paginator *ngIf="pagination" [length]="pagination.totalItems" [pageSize]="pagination.pageSize" (page)="onPageChange($event)" showFirstLastButtons></mat-paginator>
   </div>
 </div>

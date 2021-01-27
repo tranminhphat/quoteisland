@@ -37,7 +37,7 @@ export class ParamsBuilder {
     let filterString = '';
     for (const key in filterMode) {
       if (filterMode[key]) {
-        filterString += `${key}: ${filterMode[key]}`;
+        filterString += `${key}:${filterMode[key]}`;
       }
     }
 

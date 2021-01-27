@@ -18,16 +18,19 @@ export class UserManagementTableServiceService {
 
   pagination: Pagination = {
     pageNumber: 1,
-    pageSize: 10,
+    pageSize: 3,
   };
 
-  getRawData(
-    pagination?: Pagination,
-    sortMode?: SortMode,
-    filterMode?: FilterMode
-  ) {
+  sortMode: SortMode = {
+    sortBy: 'createdAt',
+    isSortAscending: true,
+  };
+
+  filterMode: FilterMode = {};
+
+  getRawData() {
     return this.userService
-      .getUsers(pagination, sortMode, filterMode)
+      .getUsers(this.pagination, this.sortMode, this.filterMode)
       .pipe(
         map((response: any) => {
           return response;
