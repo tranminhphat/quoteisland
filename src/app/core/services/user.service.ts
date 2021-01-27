@@ -43,4 +43,8 @@ export class UserService {
 
     return this.http.get<User[]>(`${this.userUrl}`, { params });
   }
+
+  createUser(user: User): Observable<User> {
+    return this.http.post<User>(`${this.userUrl}`, user);
+  }
 }

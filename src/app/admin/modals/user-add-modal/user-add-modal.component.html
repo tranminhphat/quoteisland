@@ -1,0 +1,73 @@
+<div>
+<form class="form" [formGroup]="addUserForm" (ngSubmit)="addUser()">
+  <div>
+    <mat-form-field class="form__field">
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username"/>
+      <mat-error *ngIf="addUserForm.hasError('required', 'username')">
+        Username is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="addUserForm.hasError('minlength', 'username')">
+        Username must be at least <strong>4 characters</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="form__field">
+      <mat-label>First name</mat-label>
+      <input matInput formControlName="firstName" />
+      <mat-error>
+        First name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="form__field">
+      <mat-label>Last name</mat-label>
+      <input matInput formControlName="lastName" />
+      <mat-error>
+        Last name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="form__field">
+      <mat-label>Password</mat-label>
+      <input type="password" matInput formControlName="password" />
+      <mat-error *ngIf="addUserForm.hasError('required', 'password')">
+        Password is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="addUserForm.hasError('minlength', 'password')">
+        Password must be at least <strong>6 characters</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="form__field">
+      <mat-label>Confirm password</mat-label>
+      <input type="password" matInput formControlName="confirmPassword" [errorStateMatcher]="matcher"/>
+      <mat-error>
+        Confirm password is <strong>mismatch</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="form__field">
+      <mat-label>Select roles</mat-label>
+      <mat-select formControlName="roles" multiple>
+        <mat-option *ngFor="let role of roles" [value]="role._id">
+          {{role.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error>
+        User must have at least <strong>1 role</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-label>Photo</mat-label>
+    <app-photo-uploader (uploadSucceed)="photoUploaded($event)"></app-photo-uploader> 
+  </div>
+  <button mat-stroked-button color="primary" class="button" [disabled]="addUserForm.invalid">Upload</button>
+</form>
+</div>

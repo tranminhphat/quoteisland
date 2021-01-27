@@ -15,7 +15,6 @@ export class DatatableComponent implements OnInit {
   @Input() tableService: TableService;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  value = '';
   dataSource: any;
   pagination: any;
 

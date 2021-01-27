@@ -1,23 +1,4 @@
 .admin-container {
-  &__searchandadd {
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    margin-left: 1rem;
-    display: flex;
-    justify-content: space-between;
-
-    .search {
-      button {
-        margin-left: 1rem;
-      }
-    }
-    .add {
-      button {
-        margin-right: 3rem;
-      }
-    }
-  }
-
   &__datatable {
     table {
       width: 100%;

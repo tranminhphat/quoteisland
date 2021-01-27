@@ -13,6 +13,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 const materialModules = [
   CdkTableModule,
@@ -29,6 +30,8 @@ const materialModules = [
   MatCardModule,
   MatButtonModule,
   MatFormFieldModule,
+  MatDialogModule,
+  MatSelectModule,
 ];
 
 @NgModule({

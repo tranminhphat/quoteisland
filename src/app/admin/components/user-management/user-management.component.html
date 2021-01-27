@@ -3,4 +3,18 @@
     <h1 class="banner__title">User Management</h1>
   </div>
 </app-banner>
+<div class="searchandadd">
+  <div class="search">
+    <mat-form-field>
+      <input matInput type="text" [(ngModel)]="value" placeholder="Search by username">
+      <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+      <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <button mat-stroked-button>Search</button>
+  </div>
+  <div class="add">
+    <button mat-stroked-button (click)="openAddModal()">Add</button>
+  </div> 
+</div>
 <app-datatable [tableService]="tableService" [displayedColumns]="displayedColumns"></app-datatable>

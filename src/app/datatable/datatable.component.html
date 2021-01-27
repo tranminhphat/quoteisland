@@ -1,18 +1,4 @@
 <div class="admin-container">
-  <div class="admin-container__searchandadd">
-    <div class="search">
-      <mat-form-field>
-        <input matInput type="text" [(ngModel)]="value" placeholder="Search by username">
-        <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-        <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field>
-      <button mat-stroked-button>Search</button>
-    </div>
-    <div class="add">
-      <button mat-stroked-button>Add</button>
-    </div> 
-  </div>
   <div class="admin-container__datatable">
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
       <ng-container *ngFor="let column of displayedColumns" matColumnDef="{{column.def}}">
