@@ -6,9 +6,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FileUploadModule } from 'ng2-file-upload';
 import { MaterialModule } from '../material.module';
+import { SortBarComponent } from './components/sort-bar/sort-bar.component';
+import { QuoteCardComponent } from './components/quote-card/quote-card.component';
+import { SortModalComponent } from './modals/sort-modal/sort-modal.component';
 
 @NgModule({
-  declarations: [BannerComponent, HasRoleDirective, PhotoUploaderComponent],
+  declarations: [
+    BannerComponent,
+    HasRoleDirective,
+    PhotoUploaderComponent,
+    SortBarComponent,
+    QuoteCardComponent,
+    SortModalComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -16,6 +26,12 @@ import { MaterialModule } from '../material.module';
     FileUploadModule,
     MaterialModule,
   ],
-  exports: [BannerComponent, PhotoUploaderComponent, HasRoleDirective],
+  exports: [
+    BannerComponent,
+    PhotoUploaderComponent,
+    SortBarComponent,
+    QuoteCardComponent,
+    HasRoleDirective,
+  ],
 })
 export class SharedModule {}

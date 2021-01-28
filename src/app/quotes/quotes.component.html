@@ -3,3 +3,16 @@
     <h1 class="banner__title">Quotes</h1>
   </div>
 </app-banner>
+<div class="quotes-container">
+  <app-sort-bar [modalSortOptions]="modalSortOptions" (sortChanged)="onSortChanged($event)"></app-sort-bar>
+  <div class="divider"></div>
+  <div class="row">
+    <div *ngFor="let quote of quotes; let index = index" class="card-container">
+      <app-quote-card [quote]="quote"></app-quote-card>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="pagination">
+    <mat-paginator [length]="pagination.totalItems" [pageSize]="pagination.pageSize" (page)="onPageChange($event)"></mat-paginator>
+  </div>
+</div>

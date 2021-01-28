@@ -1,0 +1,28 @@
+.sort-modal {
+  width: 70vw;
+  max-width: 500px;
+}
+
+.sort-option {
+  display: flex;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  padding: 12px 0;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid blue;
+}
+
+.sort-option:hover {
+  cursor: pointer;
+}
+
+.sort-name {
+  font-size: 15px;
+}
+
+.closeButton {
+  width: 100%;
+}

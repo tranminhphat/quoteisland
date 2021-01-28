@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Sort Quotes</h1>
+<div mat-dialog-content class="sort-modal">
+  <div *ngFor="let option of data" class="sort-option"
+    (click)="select(option.sortMode)">
+    <i [class]="option.iconClassName + ' fa-3x animated rotateIn'"></i>
+    <span class="sort-name mt-2">{{ option.name | uppercase }}</span>
+  </div>
+</div>
+<button mat-raised-button mat-dialog-close color="primary" class="closeButton">Close</button>
+

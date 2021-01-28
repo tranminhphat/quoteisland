@@ -1,0 +1,19 @@
+<mat-card class="card card-shadow">
+  <mat-card-content class="card-body">
+    <blockquote class="blockquote">
+      <p class="quote-text">
+        <i class="fa fa-quote-left"></i>
+        {{getQuoteText()}}
+      </p>
+      <footer class="quote-author blockquote-footer float-right">
+        <cite>{{ quote.author.fullName }}</cite>
+      </footer>
+    </blockquote>
+  </mat-card-content>
+  <mat-card-footer class="card-footer">
+    <a type="button" (click)="loveQuote()">
+      <i class="fa fa-lg fa-heart" [class.pink-color]="isLoved"></i>
+      {{ numOfLoves > 0 ? numOfLoves : null}}
+    </a>
+  </mat-card-footer>
+</mat-card>

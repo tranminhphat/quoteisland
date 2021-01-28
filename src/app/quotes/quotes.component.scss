@@ -9,3 +9,31 @@
     color: white;
   }
 }
+
+.quotes-container {
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 30px;
+  padding-bottom: 10px;
+
+  .divider {
+    width: 100%;
+    border-top: 1px solid #ddd;
+    margin-top: 10px;
+  }
+
+  .card-container {
+    margin-top: 20px;
+    @media (min-width: 992px) {
+      flex: 0 0 33.33333333%;
+    }
+  }
+
+  .pagination {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 12px;
+  }
+}
