@@ -66,11 +66,10 @@
     </mat-form-field>
   </div>
   <div>
-    <mat-label>Photo</mat-label>
     <app-photo-uploader (uploadSucceed)="photoUploaded($event)"></app-photo-uploader> 
   </div>
   <div mat-dialog-actions>
-    <button type="submit" mat-stroked-button color="primary" class="button" [disabled]="editUserForm.invalid">Change</button>
+    <button type="submit"  mat-stroked-button color="primary" class="closeButton" [disabled]="editUserForm.invalid">Change</button>
   </div>
 </form>
 </div>

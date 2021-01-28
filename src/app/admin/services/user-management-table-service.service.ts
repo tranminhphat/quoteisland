@@ -4,10 +4,10 @@ import { map } from 'rxjs/operators';
 import { FilterMode } from 'src/app/core/models/filtermode';
 import { Pagination } from 'src/app/core/models/pagination';
 import { SortMode } from 'src/app/core/models/sortmode';
-import { TableColumn } from 'src/app/core/models/tablecolumn';
 import { User } from 'src/app/core/models/user';
 import { UserService } from 'src/app/core/services/user.service';
 import { UserAddModalComponent } from '../modals/user-add-modal/user-add-modal.component';
+import { UserDeleteModalComponent } from '../modals/user-delete-modal/user-delete-modal.component';
 import { UserEditModalComponent } from '../modals/user-edit-modal/user-edit-modal.component';
 
 @Injectable({
@@ -56,7 +56,11 @@ export class UserManagementTableServiceService {
     return dialogEditRef;
   }
 
-  onDeleteUser(id: string) {
-    return this.userService.deleteUser(id);
+  openDeleteModal(id: string) {
+    const dialogDeleteRef = this.dialog.open(UserDeleteModalComponent, {
+      data: () => this.userService.deleteUser(id),
+    });
+
+    return dialogDeleteRef;
   }
 }

@@ -12,6 +12,7 @@ import { CategoryManagementComponent } from './components/category-management/ca
 import { DatatableModule } from '../datatable/datatable.module';
 import { UserAddModalComponent } from './modals/user-add-modal/user-add-modal.component';
 import { UserEditModalComponent } from './modals/user-edit-modal/user-edit-modal.component';
+import { UserDeleteModalComponent } from './modals/user-delete-modal/user-delete-modal.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { UserEditModalComponent } from './modals/user-edit-modal/user-edit-modal
     CategoryManagementComponent,
     UserAddModalComponent,
     UserEditModalComponent,
+    UserDeleteModalComponent,
   ],
   imports: [
     MaterialModule,

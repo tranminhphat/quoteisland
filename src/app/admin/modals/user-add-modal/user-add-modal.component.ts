@@ -8,11 +8,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Role } from 'src/app/core/models/role';
 import { User } from 'src/app/core/models/user';
 import { AlertService } from 'src/app/core/services/alert.service';
 import { RoleService } from 'src/app/core/services/role.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { UserDeleteModalComponent } from '../user-delete-modal/user-delete-modal.component';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -29,12 +31,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./user-add-modal.component.scss'],
 })
 export class UserAddModalComponent implements OnInit {
-  @Output() userAdded = new EventEmitter();
   addUserForm: FormGroup;
   roles: Role[];
   matcher: any;
 
   constructor(
+    public dialogAddRef: MatDialogRef<UserDeleteModalComponent>,
     private fb: FormBuilder,
     private roleService: RoleService,
     private userService: UserService,
@@ -60,15 +62,18 @@ export class UserAddModalComponent implements OnInit {
       .subscribe((roles: Role[]) => (this.roles = roles));
   }
 
+  onYesClick() {}
+  onNoClick() {}
+
   addUser() {
     this.userService.createUser(this.addUserForm.value).subscribe(
       (user: User) => {
         this.alertService.showSuccess('Add user successfully');
-        this.userAdded.emit(user);
+        this.dialogAddRef.close(true);
       },
       (error) => {
         this.alertService.showError('Add user failed');
-        console.error(error);
+        this.dialogAddRef.close(false);
       }
     );
   }

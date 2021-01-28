@@ -10,5 +10,5 @@ export interface TableService {
   getRawData();
   openAddModal();
   openEditModal(data: any);
-  onDeleteUser(id: string);
+  openDeleteModal(id: string);
 }

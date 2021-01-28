@@ -18,6 +18,21 @@ const routes: Routes = [
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
+  {
+    path: 'quotes',
+    loadChildren: () =>
+      import('./quotes/quotes.module').then((m) => m.QuotesModule),
+  },
+  {
+    path: 'author',
+    loadChildren: () =>
+      import('./author/author.module').then((m) => m.AuthorModule),
+  },
+  {
+    path: 'category',
+    loadChildren: () =>
+      import('./category/category.module').then((m) => m.CategoryModule),
+  },
   { path: '**', component: NotFoundComponent },
 ];
 

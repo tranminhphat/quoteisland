@@ -1,16 +1,17 @@
 <div>
   <div>
-    <input #fileSelect type="file" ng2FileSelect [uploader]="uploader" id="customFile">
+    <input matInput type="text" placeholder="Photo URL" readonly/>
+    <input #fileSelect type="file" ng2FileSelect [uploader]="uploader" class="fileUpload">
   </div>
 </div>
 <div>
- <mat-card> 
+ <mat-card class="cardDropPhoto"> 
   <mat-card-content ng2FileDrop (fileOver)="fileOver($event)" [uploader]="uploader" [class.nv-file-over]="hasDropZoneOver">
     <i class="fa fa-upload fa-3x"></i>Drop photo here
   </mat-card-content>
   </mat-card>
 </div>
-<div *ngIf="uploader?.queue?.length" class="col-xs-12">
+<div *ngIf="uploader?.queue?.length">
   <div class="table-responsive">
     <table class="table">
       <thead>

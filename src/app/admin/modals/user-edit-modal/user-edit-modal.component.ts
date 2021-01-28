@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Role } from 'src/app/core/models/role';
 import { User } from 'src/app/core/models/user';
 import { AlertService } from 'src/app/core/services/alert.service';
@@ -34,6 +34,7 @@ export class UserEditModalComponent implements OnInit {
   roles: Role[];
 
   constructor(
+    public dialogRef: MatDialogRef<UserEditModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: User,
     private fb: FormBuilder,
     private roleService: RoleService,
@@ -42,7 +43,6 @@ export class UserEditModalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.data);
     this.editUserForm = this.fb.group(
       {
         username: [
@@ -68,11 +68,14 @@ export class UserEditModalComponent implements OnInit {
     this.userService.editUser(this.data._id, this.editUserForm.value).subscribe(
       (user: User) => {
         this.alertService.showSuccess('Edit user successfully');
+        this.dialogRef.close(true);
       },
-      (error) => this.alertService.showError('Edit user failed')
+      (error) => {
+        this.alertService.showError('Edit user failed');
+        this.dialogRef.close(false);
+      }
     );
   }
-
   photoUploaded(response) {
     this.editUserForm.controls['photoUrl'].setValue(response.secureUrl);
   }

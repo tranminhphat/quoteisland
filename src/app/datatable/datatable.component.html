@@ -9,7 +9,7 @@
         <ng-template [ngIf]="column.def==='options'">
         <td mat-cell *matCellDef="let element">
           <button (click)="openEditModal(element)">Edit</button>
-          <button (click)="onDeleteUser(element._id)">Delete</button>
+          <button (click)="openDeleteModal(element._id)">Delete</button>
         </td>
         </ng-template>
         <td mat-cell *matCellDef="let element">{{element[column.def]}} </td>

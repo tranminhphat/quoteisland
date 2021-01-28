@@ -4,13 +4,13 @@
       <span>Quote island</span>
       <mat-icon  aria-hidden="false" aria-label="Right quote">format_quote</mat-icon>
     </button>
-    <button mat-button>
+    <button mat-button routerLink="/quotes">
       <span class="navbar__item">Quotes</span>
     </button>
-    <button mat-button>
+    <button mat-button routerLink="/author">
       <span class="navbar__item">Authors</span>
     </button>
-    <button mat-button>
+    <button mat-button routerLink="/category">
       <span class="navbar__item">Categories</span>
     </button>
     <button mat-button [matMenuTriggerFor]="menu" *appHasRole="['Admin', 'Moderator']">

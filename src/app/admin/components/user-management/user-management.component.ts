@@ -44,7 +44,11 @@ export class UserManagementComponent {
 
   openAddModal() {
     const dialog = this.tableService.openAddModal();
-    dialog.afterClosed().subscribe(() => this.datatable.refresh());
+    dialog.afterClosed().subscribe((message) => {
+      if (message) {
+        this.datatable.refresh();
+      }
+    });
   }
 
   searchUser(value: string) {

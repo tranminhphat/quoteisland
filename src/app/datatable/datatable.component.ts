@@ -44,11 +44,22 @@ export class DatatableComponent implements OnInit {
     const dialog = this.tableService
       .openEditModal(data)
       .afterClosed()
-      .subscribe(() => this.refresh());
+      .subscribe((message) => {
+        if (message) {
+          this.refresh();
+        }
+      });
   }
 
-  onDeleteUser(id: string) {
-    this.tableService.onDeleteUser(id).subscribe(() => this.refresh());
+  openDeleteModal(id: string) {
+    this.tableService
+      .openDeleteModal(id)
+      .afterClosed()
+      .subscribe((message) => {
+        if (message) {
+          this.refresh();
+        }
+      });
   }
 
   showRoles(roles: { id: string; name: string }[]) {
