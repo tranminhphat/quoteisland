@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
@@ -14,7 +14,9 @@ export class AuthService {
   private readonly AUTH_URL = `${environment.apiUrl}/auth`;
 
   private jwtHelper = new JwtHelperService();
-  private decodedToken = null;
+  private decodedToken = localStorage.getItem('token')
+    ? this.jwtHelper.decodeToken(localStorage.getItem('token'))
+    : null;
   private decodedTokenSubject = new BehaviorSubject(this.decodedToken);
   public decodedToken$ = this.decodedTokenSubject.asObservable();
 
@@ -25,22 +27,24 @@ export class AuthService {
     this.decodedTokenSubject.next(this.decodedToken);
   }
 
-  private getUserInfo(token: string) {
-    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
-    return this.http.get(`${this.AUTH_URL}/me`, { headers });
-  }
+  //Using for home component
 
-  getTokenFromStorage() {
-    const token = localStorage.getItem('token');
-    this.getUserInfo(token).subscribe(
-      (user: User) => {
-        if (user.username) {
-          this.changeDecodedToken(token);
-        }
-      },
-      (error) => this.logout()
-    );
-  }
+  // private getUserInfo(token: string) {
+  //   const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
+  //   return this.http.get(`${this.AUTH_URL}/me`, { headers });
+  // }
+
+  // getTokenFromStorage() {
+  //   const token = localStorage.getItem('token');
+  //   this.getUserInfo(token).subscribe(
+  //     (user: User) => {
+  //       if (user.username) {
+  //         this.changeDecodedToken(token);
+  //       }
+  //     },
+  //     (error) => this.logout()
+  //   );
+  // }
 
   login(model: any) {
     return this.http.post(`${this.AUTH_URL}/login`, model).pipe(

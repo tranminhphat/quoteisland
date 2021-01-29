@@ -1,0 +1,28 @@
+<div class="card card-shadow">
+  <div class="card-header white-text blue-gradient"></div>
+  <div class="card-body">
+    <div *ngIf="comments.length === 0">No comments yet</div>
+    <div *ngFor="let comment of comments">
+      <app-comment-item (deleteSuccess)="onDeleteSuccess()" [comment]="comment"></app-comment-item>
+    </div>
+    <div *ngIf="isLoggedIn()">
+      <form [formGroup]="commentForm">
+        <div class="formContainer">
+          <div class="w-100">
+            <textarea type="text" id="text" formControlName="content" class="textarea" rows="3"
+              placeholder="Enter your comment"></textarea>
+          </div>
+          <div class="submitButton">
+            <button type="submit" class="btn" (click)="postComment()" [disabled]="commentForm.invalid">
+              <i class="fa fa-lg fa-send-o"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="paginator">
+      <mat-paginator [length]="pagination.totalItems" [pageSize]="pagination.pageSize"
+        (page)="onPageChanged($event)"></mat-paginator>
+    </div>
+  </div>
+</div>

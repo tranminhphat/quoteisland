@@ -1,14 +1,20 @@
 .navbar {
-  &__brand {
-    margin-right: 20px;
-    font-size: large;
-  }
-  &__item {
-    margin-right: 10px;
-    font-size: medium;
-  }
-  &__input {
-    width: 200px;
-    font-size: medium;
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .brand {
+      margin-right: 20px;
+      font-size: large;
+    }
+    .item {
+      margin-right: 10px;
+      font-size: medium;
+    }
+    .input {
+      width: 200px;
+      font-size: medium;
+    }
   }
 }

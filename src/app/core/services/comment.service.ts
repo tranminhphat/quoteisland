@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Quote } from '../models/quote';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ParamsBuilder } from 'src/app/utils/params-builder';
+import { UrlUtils } from 'src/app/utils/url-utils';
 import { environment } from 'src/environments/environment';
 import { FilterMode } from '../models/filtermode';
 import { Pagination } from '../models/pagination';
@@ -11,8 +11,9 @@ import { SortMode } from '../models/sortmode';
 @Injectable({
   providedIn: 'root',
 })
-export class QuoteService {
-  private readonly quoteUrl = `${environment.apiUrl}/quotes`;
+export class CommentService {
+  private readonly commentUrl = `${environment.apiUrl}/quotes/{quoteId}/comments`;
+  private readonly commentDetailUrl = `${environment.apiUrl}/quotes/{quoteId}/comments/{commentId}`;
 
   private readonly defaultPagination: Pagination = {
     pageNumber: 1,
@@ -21,30 +22,37 @@ export class QuoteService {
 
   private readonly defaultSortMode: SortMode = {
     sortBy: 'createdAt',
-    isSortAscending: false,
+    isSortAscending: true,
   };
 
   constructor(private http: HttpClient) {}
 
-  getQuotes(
+  getComments(
+    quoteId: string,
     pagination: Pagination = this.defaultPagination,
     sortMode: SortMode = this.defaultSortMode,
     filterMode?: FilterMode
-  ): Observable<Quote[]> {
+  ): Observable<Comment[]> {
+    const url = UrlUtils.resolveParams(this.commentUrl, { quoteId });
     const params = new ParamsBuilder()
       .applyPagination(pagination)
       .applySort(sortMode)
       .applyFilter(filterMode)
       .build();
 
-    return this.http.get<Quote[]>(`${this.quoteUrl}`, { params: params });
+    return this.http.get<Comment[]>(url, { params });
   }
 
-  getQuote(id: string) {
-    return this.http.get<Quote>(`${this.quoteUrl}/${id}`);
+  commentQuote(quoteId: string, content: string): Observable<Comment> {
+    const url = UrlUtils.resolveParams(this.commentUrl, { quoteId });
+    return this.http.post<Comment>(url, { content });
   }
 
-  loveQuote(id: string): Observable<Quote> {
-    return this.http.post<Quote>(`${this.quoteUrl}/${id}/love`, null);
+  deleteComment(quoteId: string, commentId: string): Observable<Comment> {
+    const url = UrlUtils.resolveParams(this.commentDetailUrl, {
+      quoteId,
+      commentId,
+    });
+    return this.http.delete<Comment>(url);
   }
 }

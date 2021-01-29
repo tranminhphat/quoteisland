@@ -1,7 +1,7 @@
 <mat-card class="card card-shadow">
   <mat-card-content class="card-body">
     <blockquote class="blockquote">
-      <p class="quote-text">
+      <p class="quote-text" [routerLink]="['/quotes', quote._id]">
         <i class="fa fa-quote-left"></i>
         {{getQuoteText()}}
       </p>

@@ -1,0 +1,47 @@
+<app-banner [imageUrl]="bannerImageUrl">
+  <div class="banner">
+    <h1 class="banner__title">Quote Detail</h1>
+  </div>
+</app-banner>
+<div class="quote-detail-container">
+  <div class="row">
+    <div class="col-8">
+      <div class="card card__quote">
+        <div class="card__header"></div>
+        <div class="card__body">
+          <blockquote>
+            <p class="quote-text">
+              <i class="fa fa-quote-left"></i>
+              {{ quote.text }}
+            </p>
+            <footer class='quote-author'>
+              <cite class="author-name">{{ quote.author.fullName }}</cite>
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card__header"></div>
+        <div class="card__body jc-sb">
+          <div class="category">
+            <a type="button">
+              <i class="fa fa-lg fa-heart" [class.pink-color]="isLoved"></i>
+              {{ numOfLoves > 0 ? numOfLoves : null}}
+            </a>
+          </div>
+          <div class="categories-list">
+            <a *ngFor="let category of quote.categories" class="category-btn">
+              {{category.name}}
+            </a> 
+          </div>
+          <div>
+            <a type="button"><i class="fa fa-lg fa-share-alt"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <app-comment-section [quoteId]="quote._id"></app-comment-section>
+    </div>
+  </div>
+</div>

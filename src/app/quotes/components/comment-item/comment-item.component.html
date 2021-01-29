@@ -1,0 +1,13 @@
+<div class="comment-item">
+  <img [src]="comment.user.photoUrl || defaultPhotoUrl" class="avatar">
+  <div class="section">
+    <h5 class="&__header">
+      <a class="username">{{ comment.user.username }}</a>
+      <a *ngIf="canDelele" class="pull-right" (click)="openDeleteModal()">
+        <i class="fa fa-remove"></i>
+      </a>
+    </h5>
+    <p class="datetime font-italic mb-0"><i class="fa fa-clock-o"></i> {{ comment.createdAt | date:'medium' }}</p>
+    <p class="mb-0">{{ comment.content }}</p>
+  </div>
+</div>
